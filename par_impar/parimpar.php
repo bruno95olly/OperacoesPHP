@@ -1,18 +1,13 @@
 <?php 
-    $nPares = null;
-    $nImpar = null;
-    $totPar = (int) 0;
-    $totImpar = (int) 0;
-
-    const CAIXA_VAZIA = "<div class='alertaCaixa'><div class='alerta-Content'><div class='alertaAviso'>Selecione um numero nas duas caixas!</div><div class='buttonAlert'><a href='parimpar.php'><i id='btnReload' class='bx bx-undo'></i></a></div></div></div>";
-
-    const DIGITOS_INVALIDOS = "<div class='alertaCaixa'><div class='alerta-Content'><div class='alertaAviso'>O numero inicial precisa ser menor que o numero final</div><div class='buttonAlert'><a href='parimpar.php'><i id='btnReload' class='bx bx-undo'></i></a></div></div></div>";
+    require_once('var_const/variaveis-constantes.php');
+    require_once('functions/pares_impares.php');
 
     if(isset($_POST['btnCalcular'])){
+        
         $nInicial = $_POST['valorInicial'];
         $nFinal = $_POST['valorFinal'];
         
-        if(empty ($nInicial) || empty ($nFinal)){
+        if($nInicial == "0" || $nFinal == "0" ){
             echo(CAIXA_VAZIA);
         }
         else{
@@ -20,21 +15,16 @@
                 echo(DIGITOS_INVALIDOS);
             }
             else{
-                for($cont = $nInicial; $cont <= $nFinal; $cont++){
-                    if($cont%2==0){
-                        $totPar = $totPar + 1;
-                        $nPares = $nPares.$cont."<br>";
-                    }
-                    else{
-                        $totImpar = $totImpar + 1;
-                        $nImpar = $nImpar.$cont."<br>";
-                    }
+                $nPares = numerosPares($nInicial, $nFinal);
+                $totPar = quantidadePares($nInicial, $nFinal);
+                
+                $totImpar = quantidadeImpares($nInicial, $nFinal);
+                $nImpar = numerosImpares($nInicial, $nFinal);
                 } 
             }
             
         }
         
-    }  
 ?>
 
 

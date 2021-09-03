@@ -1,14 +1,6 @@
 <?php
-    $tabuada = (int) 0;
-    $cont = (int) 0;
-    $resultado = (int) 0;
-    $caixaTabuada = null;
-    
-    const CAIXA_VAZIA = "<div class='alertaCaixa'><div class='alerta-Content'><div class='alertaAviso'>Preencha todos os campos!</div><div class='buttonAlert'><a href='calculadora.php'><i id='btnReload' class='bx bx-undo'></i></a></div></div></div>";
-
-    const DIGITOS_INVALIDOS = "<div class='alertaCaixa'><div class='alerta-Content'><div class='alertaAviso'>Digite apenas caracteres numéricos!</div><div class='buttonAlert'><a href='calculadora.php'><i id='btnReload' class='bx bx-undo'></i></a></div></div></div>";
-
-    const DIGITO_ZERO = "<div class='alertaCaixa'><div class='alerta-Content'><div class='alertaAviso'>O numero 0 não é valido nesta situação</div><div class='buttonAlert'><a href='calculadora.php'><i id='btnReload' class='bx bx-undo'></i></a></div></div></div>";
+    require_once('var_const/variaveis_constantes.php');
+    require_once('functions/tabuada_funcao.php');
 
     if(isset($_POST['btnCalcular'])){
         
@@ -19,24 +11,17 @@
             echo(CAIXA_VAZIA);
         }
         else{
-            if($tabuada == 0 || $contador == 0){
+            if($tabuada == "0" || $contador == "0"){
                 echo(DIGITO_ZERO);
             }
             elseif(is_numeric ($tabuada) && is_numeric ($contador)){
-                for($cont = 1; $cont <= $contador; $cont ++){
-                    $resultado = $tabuada * $cont;
-                    $caixaTabuada = $caixaTabuada . $tabuada ." x ". $cont . " = " . $resultado . "<br>";
-                } 
+                $caixaTabuada = tabuadaResult($tabuada, $contador);
             }
             else{
                 echo(DIGITOS_INVALIDOS);
             }
         }
     }
-
-        
-        
-        
 
 ?>
 

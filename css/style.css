@@ -87,8 +87,9 @@ header{
 .sidebar #btn:hover > #submenu{
     opacity: 1;
     visibility: visible;
-    transition: 0.6s;
+    transition: 0.8s;
     margin-top: 60px;
+
 }
 
 #dropdown{
